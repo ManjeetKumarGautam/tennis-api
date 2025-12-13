@@ -5,7 +5,8 @@ import {
     liveMatches,
     changeMatchStatus,
     singleMatch,
-    autoGenerateMatches
+    autoGenerateMatches,
+    deleteMatchById
 } from "../controllers/matchController.js";
 
 const router = express.Router();
@@ -16,5 +17,6 @@ router.get("/live", liveMatches);
 router.get("/:id", singleMatch);
 router.put("/:id/status", changeMatchStatus);
 router.post("/generate", autoGenerateMatches);
+router.delete("/:id", deleteMatchById);
 
 export default router;

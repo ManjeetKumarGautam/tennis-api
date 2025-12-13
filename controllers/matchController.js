@@ -1,6 +1,6 @@
 import {
     createMatch, getAllMatches, getLiveMatches,
-    updateMatchStatus, getMatchById, autoGenerateMatchesService
+    updateMatchStatus, getMatchById, autoGenerateMatchesService, deleteMatch
 } from "../services/matchService.js";
 
 export const addMatch = async (req, res) => {
@@ -30,4 +30,9 @@ export const autoGenerateMatches = async (req, res) => {
 
     const matches = await autoGenerateMatchesService();
     res.json(matches);
+};
+
+export const deleteMatchById = async (req, res) => {
+    await deleteMatch(req.params.id);
+    res.json({ message: "Match deleted" });
 };

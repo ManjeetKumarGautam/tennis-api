@@ -7,7 +7,7 @@ dotenv.config();
 // -----------------------------------------
 const playerSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    counrty_code: { type: Number, required: true },
+    country_code: { type: Number, required: true },
     ranking: { type: Number, required: true },
     age: { type: Number, required: true },
     height: { type: String },
@@ -27,7 +27,7 @@ const Player = mongoose.model("Player", playerSchema);
 const players = [
     {
         "name": "Novak Djokovic",
-        "counrty_code": 381,
+        "country_code": 381,
         "ranking": 1,
         "age": 37,
         "height": "188 cm",
@@ -40,7 +40,7 @@ const players = [
     },
     {
         "name": "Carlos Alcaraz",
-        "counrty_code": 34,
+        "country_code": 34,
         "ranking": 2,
         "age": 21,
         "height": "183 cm",
@@ -53,7 +53,7 @@ const players = [
     },
     {
         "name": "Daniil Medvedev",
-        "counrty_code": 7,
+        "country_code": 7,
         "ranking": 3,
         "age": 28,
         "height": "198 cm",
@@ -66,7 +66,7 @@ const players = [
     },
     {
         "name": "Jannik Sinner",
-        "counrty_code": 39,
+        "country_code": 39,
         "ranking": 4,
         "age": 23,
         "height": "188 cm",
@@ -79,7 +79,7 @@ const players = [
     },
     {
         "name": "Alexander Zverev",
-        "counrty_code": 49,
+        "country_code": 49,
         "ranking": 5,
         "age": 27,
         "height": "198 cm",
@@ -92,7 +92,7 @@ const players = [
     },
     {
         "name": "Stefanos Tsitsipas",
-        "counrty_code": 30,
+        "country_code": 30,
         "ranking": 6,
         "age": 26,
         "height": "193 cm",
@@ -105,7 +105,7 @@ const players = [
     },
     {
         "name": "Andrey Rublev",
-        "counrty_code": 7,
+        "country_code": 7,
         "ranking": 7,
         "age": 26,
         "height": "188 cm",
@@ -118,7 +118,7 @@ const players = [
     },
     {
         "name": "Holger Rune",
-        "counrty_code": 45,
+        "country_code": 45,
         "ranking": 8,
         "age": 21,
         "height": "188 cm",
@@ -131,7 +131,7 @@ const players = [
     },
     {
         "name": "Casper Ruud",
-        "counrty_code": 47,
+        "country_code": 47,
         "ranking": 9,
         "age": 25,
         "height": "183 cm",
@@ -144,7 +144,7 @@ const players = [
     },
     {
         "name": "Taylor Fritz",
-        "counrty_code": 1,
+        "country_code": 1,
         "ranking": 10,
         "age": 26,
         "height": "196 cm",
@@ -157,7 +157,7 @@ const players = [
     },
     {
         "name": "Alex de Minaur",
-        "counrty_code": 61,
+        "country_code": 61,
         "ranking": 11,
         "age": 25,
         "height": "183 cm",
@@ -170,7 +170,7 @@ const players = [
     },
     {
         "name": "Tommy Paul",
-        "counrty_code": 1,
+        "country_code": 1,
         "ranking": 12,
         "age": 27,
         "height": "185 cm",
@@ -183,7 +183,7 @@ const players = [
     },
     {
         "name": "Hubert Hurkacz",
-        "counrty_code": 48,
+        "country_code": 48,
         "ranking": 13,
         "age": 27,
         "height": "196 cm",
@@ -196,7 +196,7 @@ const players = [
     },
     {
         "name": "Grigor Dimitrov",
-        "counrty_code": 359,
+        "country_code": 359,
         "ranking": 14,
         "age": 33,
         "height": "191 cm",
@@ -209,7 +209,7 @@ const players = [
     },
     {
         "name": "Ben Shelton",
-        "counrty_code": 1,
+        "country_code": 1,
         "ranking": 15,
         "age": 22,
         "height": "193 cm",
@@ -222,7 +222,7 @@ const players = [
     },
     {
         "name": "Frances Tiafoe",
-        "counrty_code": 1,
+        "country_code": 1,
         "ranking": 16,
         "age": 26,
         "height": "188 cm",
@@ -235,7 +235,7 @@ const players = [
     },
     {
         "name": "Karen Khachanov",
-        "counrty_code": 7,
+        "country_code": 7,
         "ranking": 17,
         "age": 28,
         "height": "198 cm",
@@ -248,7 +248,7 @@ const players = [
     },
     {
         "name": "Felix Auger-Aliassime",
-        "counrty_code": 1,
+        "country_code": 1,
         "ranking": 18,
         "age": 24,
         "height": "193 cm",
@@ -261,7 +261,7 @@ const players = [
     },
     {
         "name": "Sebastian Korda",
-        "counrty_code": 1,
+        "country_code": 1,
         "ranking": 19,
         "age": 24,
         "height": "196 cm",
@@ -274,7 +274,7 @@ const players = [
     },
     {
         "name": "Lorenzo Musetti",
-        "counrty_code": 39,
+        "country_code": 39,
         "ranking": 20,
         "age": 22,
         "height": "185 cm",

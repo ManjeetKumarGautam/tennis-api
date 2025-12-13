@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const playerSchema = new mongoose.Schema({
     name: { type: String, required: true },
-    counrty_code: { type: Number, required: true },
+    country_code: { type: Number, required: true },
     ranking: { type: Number, required: true },
     age: { type: Number, required: true },
     height: { type: String },

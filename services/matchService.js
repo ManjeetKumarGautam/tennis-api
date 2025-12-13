@@ -1,5 +1,6 @@
 import Match from "../models/matchModel.js";
 import Player from "../models/playerModel.js";
+import Score from "../models/scoreModel.js";
 import { generateRandomMatches } from "../utils/generateMatches.js";
 
 // Create Match
@@ -43,8 +44,22 @@ export const updateMatchStatus = async (id, status) => {
 // Get match by ID
 export const getMatchById = async (id) => {
     try {
-        
-        return await Match.findById(id).populate("playerA playerB");
+
+        const match = await Match
+            .findById(id)
+            .populate("playerA playerB")
+            .lean(); // convert to plain object
+
+        const score = await Score
+            .findOne({ matchId: id })
+            .lean();
+
+        return {
+            ...match,
+            score
+        };
+
+        // return await Match.findById(id).populate("playerA playerB");
 
     } catch (error) {
         throw new Error(error.message);
@@ -68,3 +83,6 @@ export const autoGenerateMatchesService = async () => {
         throw new Error(error.message);
     }
 };
+
+export const deleteMatch = async (id) =>
+    await Match.findByIdAndDelete(id);

@@ -50,8 +50,8 @@ io.on("connection", (socket) => {
 
     // Join a specific match room
     socket.on("joinMatch", (matchId) => {
-        socket.join(matchId);
         console.log(`🎾 Socket ${socket.id} joined match ${matchId}`);
+        socket.join(matchId);
     });
 
     socket.on("disconnect", () => {
