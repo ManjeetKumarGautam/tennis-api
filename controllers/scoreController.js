@@ -1,28 +1,49 @@
-import { updateScore, getScore } from "../services/scoreService.js";
+import { addPointService, getScoreService } from "../services/scoreService.js";
+import { io } from "../server.js";
 
-
-export const updateMatchScore = async (req, res) => {
-    const { matchId } = req.params;
-    const { player } = req.body;
-
+export const addPoint = async (req, res) => {
     try {
-        const updatedMatch = await updateScore(matchId, player);
-        return res.json(updatedMatch); // send response here
-    } catch (err) {
-        return res.status(400).json({ message: err.message });
+        const { matchId } = req.params;
+        const { player } = req.body; // "A" or "B"
+
+        const score = await addPointService(matchId, player);
+
+        // 🔴 LIVE SOCKET UPDATE
+        io.to(matchId).emit("scoreUpdated", score);
+
+        res.status(200).json({
+            success: true,
+            data: score
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
     }
 };
-// export const updateScoreForSocket = async (matchId, player) => {
-//   const updatedMatch = await updateMatchScore(matchId, player);
 
-//   // Emit to all connected clients in the room
-//   const io = getIO();
-//   io.to(matchId).emit("scoreUpdate", updatedMatch);
+export const getScore = async (req, res) => {
+    try {
+        const { matchId } = req.params;
 
-//   // THIS LINE IS WRONG FOR SOCKET:
-//   return res.json(updatedMatch); // ❌ res is undefined
-// };
-export const getMatchScore = async (req, res) => {
-    const score = await getScore(req.params.matchId);
-    res.json(score);
+        const score = await getScoreService(matchId);
+
+        if (!score) {
+            return res.status(404).json({
+                success: false,
+                message: "Score not found"
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            data: score
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: error.message
+        });
+    }
 };

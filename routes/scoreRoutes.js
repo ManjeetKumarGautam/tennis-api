@@ -1,12 +1,9 @@
 import express from "express";
-import {
-    updateMatchScore,
-    getMatchScore
-} from "../controllers/scoreController.js";
+import { addPoint, getScore } from "../controllers/scoreController.js";
 
 const router = express.Router();
 
-router.post("/:matchId/point", updateMatchScore);
-router.get("/:matchId", getMatchScore);
+router.post("/:matchId/point", addPoint);
+router.get("/:matchId", getScore);
 
 export default router;

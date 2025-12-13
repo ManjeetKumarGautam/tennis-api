@@ -24,7 +24,7 @@ export const getAllMatches = async () => {
 export const getLiveMatches = async () => {
     try {
 
-        
+
         return await Match.find({ status: "live" }).populate("playerA playerB");
     } catch (error) {
         throw new Error(error.message);
@@ -43,7 +43,9 @@ export const updateMatchStatus = async (id, status) => {
 // Get match by ID
 export const getMatchById = async (id) => {
     try {
+        
         return await Match.findById(id).populate("playerA playerB");
+
     } catch (error) {
         throw new Error(error.message);
     }

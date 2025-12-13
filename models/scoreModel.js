@@ -9,42 +9,38 @@ const scoreSchema = new mongoose.Schema(
             unique: true
         },
 
-        status: {
-            type: String,
-            enum: ["scheduled", "live", "completed"],
-            default: "scheduled"
+        points: {
+            playerA: { type: Number, default: 0 }, // 0,1,2,3 => 0,15,30,40
+            playerB: { type: Number, default: 0 }
         },
 
-        points: {
-            playerA: {
-                type: String,
-                enum: ["0", "15", "30", "40", "ADV"],
-                default: "0"
-            },
-            playerB: {
-                type: String,
-                enum: ["0", "15", "30", "40", "ADV"],
-                default: "0"
-            }
+        advantage: {
+            type: String,
+            enum: ["playerA", "playerB", null],
+            default: null
         },
 
         sets: [
             {
-                gamesA: { type: Number, default: 0 },
-                gamesB: { type: Number, default: 0 }
+                games: {
+                    playerA: Number,
+                    playerB: Number
+                }
             }
         ],
-
-        tieBreak: {
-            active: { type: Boolean, default: false },
+        setScore: {
             playerA: { type: Number, default: 0 },
             playerB: { type: Number, default: 0 }
         },
-
         winner: {
             type: String,
-            enum: ["playerA", "playerB"],
+            enum: ["playerA", "playerB", null],
             default: null
+        },
+        status: {
+            type: String,
+            enum: ["live", "completed"],
+            default: "live"
         }
     },
     { timestamps: true }
