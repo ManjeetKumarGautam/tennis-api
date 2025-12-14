@@ -11,7 +11,7 @@ export const createPlayer = async (data) => {
 }
 
 export const getPlayers = async () => {
-    return await Player.find().sort({ ranking: 1 });
+    return await Player.find().sort({ wins: -1 });
 };
 
 

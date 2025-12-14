@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const playerSchema = new mongoose.Schema({
     name: { type: String, required: true },
     country_code: { type: Number, required: true },
-    ranking: { type: Number, },
+    ranking: { type: Number },
     age: { type: Number, required: true },
     height: { type: String },
     weight: { type: String },
