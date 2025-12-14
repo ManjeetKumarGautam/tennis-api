@@ -32,6 +32,11 @@ const scoreSchema = new mongoose.Schema(
             playerA: { type: Number, default: 0 },
             playerB: { type: Number, default: 0 }
         },
+        server: {
+            type: String,
+            enum: ["playerA", "playerB", null],
+            default: "playerA" // starting server
+        },
         winner: {
             type: String,
             enum: ["playerA", "playerB", null],

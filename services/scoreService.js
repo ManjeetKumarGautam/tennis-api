@@ -51,6 +51,11 @@ async function winGame(score, currentSet, pKey) {
     currentSet.games[pKey] += 1;
     resetPoints(score);
 
+    // -----------------
+    // SWITCH SERVER
+    // -----------------
+    score.server = score.server === "playerA" ? "playerB" : "playerA";
+
     const gA = currentSet.games.playerA;
     const gB = currentSet.games.playerB;
 

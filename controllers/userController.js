@@ -1,37 +1,43 @@
 import jwt from "jsonwebtoken";
-import { createUser, loginUser, getUserById } from "../services/userService.js";
+import { signInService, signUpService, getUserById } from "../services/userService.js";
 
-const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "30d" });
-};
 
 // Register
-export const registerUser = async (req, res) => {
+export const loginUserController = async (req, res) => {
     try {
-        const user = await createUser(req.body);
-        res.status(201).json({
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            token: generateToken(user._id)
+        const { email, password } = req.body;
+
+        const data = await signInService(email, password);
+
+        res.status(200).json({
+            message: "Login successful",
+            ...data
         });
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(401).json({
+            message: error.message || "Login failed"
+        });
     }
 };
 
 // Login
-export const loginUserController = async (req, res) => {
+export const registerUser = async (req, res) => {
     try {
-        const user = await loginUser(req.body);
-        res.json({
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            token: generateToken(user._id)
+        const { name, email, password } = req.body;
+
+        const data = await signUpService(name, email, password);
+
+        res.status(201).json({
+            message: "Account created successfully",
+            ...data
         });
     } catch (error) {
-        res.status(401).json({ message: error.message });
+        const statusCode =
+            error.message === "User already exists" ? 409 : 400;
+
+        res.status(statusCode).json({
+            message: error.message || "Signup failed"
+        });
     }
 };
 
