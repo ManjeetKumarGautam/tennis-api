@@ -44,7 +44,7 @@ export const getDashboard = async () => {
                 .limit(5),
 
             Player.find({})
-                .sort({ ranking: 1 })
+                .sort({ wins: -1 })
                 .limit(5)
                 .select("name ranking country wins losses"),
         ]);

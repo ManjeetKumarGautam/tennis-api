@@ -2,7 +2,13 @@ import Player from "../models/playerModel.js";
 import Match from "../models/matchModel.js";
 import mongoose from "mongoose";
 
-export const createPlayer = async (data) => await Player.create(data);
+export const createPlayer = async (data) => {
+    try {
+        return await Player.create(data);
+    } catch (error) {
+        throw new Error(error.message);
+    }
+}
 
 export const getPlayers = async () => {
     return await Player.find().sort({ ranking: 1 });
