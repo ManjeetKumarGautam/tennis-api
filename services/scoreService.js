@@ -105,10 +105,21 @@ async function winSet(score, setWinner) {
         score.winner = setWinner;
 
         const match = await Match.findById(score.matchId);
+
         if (match) {
             const winnerId =
                 setWinner === "playerA" ? match.playerA : match.playerB;
-            await Player.findByIdAndUpdate(winnerId, { $inc: { wins: 1 } });
+
+            const loserId =
+                setWinner === "playerA" ? match.playerB : match.playerA;
+
+            await Player.findByIdAndUpdate(winnerId, {
+                $inc: { wins: 1 }
+            });
+
+            await Player.findByIdAndUpdate(loserId, {
+                $inc: { losses: 1 }
+            });
         }
 
         await Match.findByIdAndUpdate(score.matchId, {
@@ -126,14 +137,6 @@ async function winSet(score, setWinner) {
 }
 
 
-// ================================
-// RESET POINTS
-// ================================
-function resetPoints(score) {
-    score.points.playerA = 0;
-    score.points.playerB = 0;
-    score.advantage = null;
-}
 
 
 export const getScoreService = async (matchId) => {
