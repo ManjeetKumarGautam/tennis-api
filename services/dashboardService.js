@@ -59,13 +59,20 @@ export const getDashboard = async () => {
 
                 let winner = null;
                 let loser = null;
+                let winnerScore = null;
+                let loserScore = null;
+
 
                 if (score.winner === "playerA" && match.playerA && match.playerB) {
                     winner = match.playerA.name;
+                    winnerScore = score.setScore.playerA;
                     loser = match.playerB.name;
+                    loserScore = score.setScore.playerB;
                 } else if (score.winner === "playerB" && match.playerA && match.playerB) {
                     winner = match.playerB.name;
+                    winnerScore = score.setScore.playerB;
                     loser = match.playerA.name;
+                    loserScore = score.setScore.playerA;
                 }
 
                 return {
@@ -74,7 +81,10 @@ export const getDashboard = async () => {
                     round: match.matchInfo?.round || "",
                     winner,
                     loser,
-                    setScore: score.setScore || null,
+                    setScore: {
+                        playerA: winnerScore,
+                        playerB: loserScore
+                    },
                     completedAt: match.updatedAt,
                 };
             })
